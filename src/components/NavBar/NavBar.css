@@ -1,0 +1,26 @@
+.custom-nav {
+    background-color: var(--orange);
+    display: flex;
+    justify-content: space-around;
+    
+  }
+    
+  .NavBar-link {
+      margin: 0 10px;
+      color: var(--dark);
+   }
+    
+  .NavBar-welcome {
+      color: var(--kgreen);
+  }
+    
+  .selected {
+      font-weight: bold;
+      color: var(--green);
+  }
+  
+  .NavBar-link:hover,
+  .NavBar-link:active {
+    text-decoration: none;
+    color: var(--green);
+  }
