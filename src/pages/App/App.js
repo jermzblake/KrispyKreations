@@ -1,30 +1,31 @@
 import logo from '../../logo.svg';
 import './App.css';
+import React, {useState, useEffect} from 'react';
 import { Route, Link } from 'react-router-dom';
 import NavBar from '../../components/NavBar/NavBar';
 import Test from '../test';
+// Pages
+import SignupPage from '../SignupPage/SignupPage';
 
 function App() {
+  const [user, setUser] = useState(null);
+  const [recipeBook, setRecipeBook] = useState(null);
+
+
   return (
     <div className="App">
       <header className="App-header">
         <NavBar />
-        <Route exact path='/test' render={() => (
-        <Test/>
-        )}/>
+
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+
       </header>
+      <Route exact path='/test' render={() => (
+        <Test/>
+      )}/>
+      <Route exact path='/signup' render={({ history }) => (
+        <SignupPage history={history} />
+      )}/>
     </div>
   );
 }
