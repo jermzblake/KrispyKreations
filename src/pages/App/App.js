@@ -2,15 +2,21 @@ import logo from '../../logo.svg';
 import './App.css';
 import React, {useState, useEffect} from 'react';
 import { Route, Link } from 'react-router-dom';
-import NavBar from '../../components/NavBar/NavBar';
-import Test from '../test';
-// Pages
+// import pages
 import SignupPage from '../SignupPage/SignupPage';
+import Test from '../test';
+// import components
+import NavBar from '../../components/NavBar/NavBar';
+// import utilities
+import userService from '../../utils/userService';
 
 function App() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(userService.getUser());
   const [recipeBook, setRecipeBook] = useState(null);
 
+  const handleSignupOrLogin = () => {
+    setUser(userService.getUser());
+  }
 
   return (
     <div className="App">
@@ -24,7 +30,12 @@ function App() {
         <Test/>
       )}/>
       <Route exact path='/signup' render={({ history }) => (
-        <SignupPage history={history} />
+        <SignupPage 
+          history={history}
+          handleSignup={handleSignupOrLogin}
+          user={user}
+          
+        />
       )}/>
     </div>
   );
