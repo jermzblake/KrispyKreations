@@ -21,10 +21,15 @@ function SignupForm (props) {
             props.handleSignup();
             // Successfully signed up - show root page
             props.history.push('/');
-        }   catch (err) {
+        } catch (err) {
+            console.log(err.message)
             // Invalid user data (probably duplicate email)
             props.updateMessage(err.message);
             }        
+    }
+
+    const isFormInvalid = () => {
+        return !(name && email && password === passwordConf);
     }
 
     return (
@@ -58,7 +63,7 @@ function SignupForm (props) {
                     onChange={e => setPasswordConf(e.target.value)}
                 />
                 <div>
-                    <Button type="submit" variant="contained" color="primary">Submit</Button>
+                    <Button type="submit" variant="contained" color="primary" disabled={isFormInvalid()}>Submit</Button>
                     <Link to='/'>Cancel</Link>
                 </div>                
             </form>

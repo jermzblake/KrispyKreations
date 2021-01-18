@@ -25,3 +25,8 @@
 
 }
 
+body {
+  font-family: var(--font-robto);
+  background-color: var(--main-bg-color);
+  color: var(--font-color);
+}

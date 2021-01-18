@@ -11,6 +11,7 @@ function SignupPage (props) {
     return (
         <div>
             <SignupForm {...props} updateMessage={updateMessage} />
+            <p>{message}</p>
         </div>
     )
 }

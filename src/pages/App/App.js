@@ -4,6 +4,7 @@ import React, {useState, useEffect} from 'react';
 import { Route, Link } from 'react-router-dom';
 // import pages
 import SignupPage from '../SignupPage/SignupPage';
+import LoginPage from '../LoginPage/LoginPage';
 import Test from '../test';
 // import components
 import NavBar from '../../components/NavBar/NavBar';
@@ -18,12 +19,18 @@ function App() {
     setUser(userService.getUser());
   }
 
-
+  const handleLogout = () => {
+    userService.logout();
+    setUser(null);
+  }
 
   return (
     <div className="App">
       <header className="App-header">
-        <NavBar />
+        <NavBar
+          user={user}
+          handleLogout={handleLogout}
+        />
 
         <img src={logo} className="App-logo" alt="logo" />
 
@@ -37,6 +44,12 @@ function App() {
           handleSignup={handleSignupOrLogin}
           user={user}
           
+        />
+      )}/>
+      <Route exact path='/login' render={({ history }) => (
+        <LoginPage
+          history={history}
+          handleLogin={handleSignupOrLogin}
         />
       )}/>
     </div>
