@@ -10,6 +10,7 @@ import Test from '../test';
 import NavBar from '../../components/NavBar/NavBar';
 // import utilities
 import userService from '../../utils/userService';
+import recipeService from '../../utils/recipeService';
 
 function App() {
   const [user, setUser] = useState(userService.getUser());
@@ -22,6 +23,10 @@ function App() {
   const handleLogout = () => {
     userService.logout();
     setUser(null);
+  }
+
+  const updateRecipeBook = (book) => {
+    setRecipeBook({ book })
   }
 
   return (
@@ -43,7 +48,7 @@ function App() {
           history={history}
           handleSignup={handleSignupOrLogin}
           user={user}
-          
+          updateRecipeBook={updateRecipeBook}
         />
       )}/>
       <Route exact path='/login' render={({ history }) => (

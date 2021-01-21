@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import userService from '../../utils/userService';
+import recipeService from '../../utils/recipeService';
 
 
 function SignupForm (props) {
@@ -16,7 +17,6 @@ function SignupForm (props) {
         try {
             console.log( 'Email:', email, 'Password: ', password); 
             await userService.signup({name, email, password, passwordConf});
-
             // Let <App> know a user has signed up!
             props.handleSignup();
             // Successfully signed up - show root page

@@ -17,7 +17,7 @@ const entrySchema = new mongoose.Schema({
 
 const recipeSchema = new mongoose.Schema({
     user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}, //embedding User
-    recipes: [entrySchmea] //embedding entrySchema
+    recipes: [entrySchema] //embedding entrySchema
 }, {
     timestamps: true
 })

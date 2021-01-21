@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const recipeBooksCtrl = require('');
+const recipeBooksCtrl = require('../../controllers/recipeBooks');
 const helpers = require('../../config/helpers');
 
 /*---------- Protected Routes ----------*/

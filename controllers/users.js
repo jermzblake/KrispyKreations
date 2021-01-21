@@ -1,6 +1,7 @@
 const User = require('../models/user');
 const jwt = require('jsonwebtoken');
 const SECRET = process.env.SECRET;
+const Recipe = require('../models/recipe');
 
 module.exports = {
     signup,
@@ -12,9 +13,11 @@ async function signup(req, res) {
     const user = new User(req.body);
     try {
       await user.save();
+      // create a recipe book for new user
+      const recipeBook = await createRecipeBook(user)
       // Send back a JWT instead of the user
       const token = createJWT(user); // create a jwt!
-      res.json({ token });  // Send jwt to REACT
+      res.json({ token, user, recipeBook });  // Send jwt to REACT
     } catch (err) {
       // Probably a duplicate email
       res.status(400).json(err);
@@ -46,4 +49,16 @@ function createJWT(user) {
       SECRET,
       {expiresIn: '24h'}
     );
-} 
+}
+
+async function createRecipeBook(newUser) {
+  let newRecipeBook = await new Recipe();
+  newRecipeBook.user = (newUser.id);
+  newRecipeBook.save(function(err){
+    if(err) {
+    console.log(err);
+    return ({err});
+    };
+    return (newRecipeBook);
+})
+}
