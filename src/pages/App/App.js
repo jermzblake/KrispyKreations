@@ -20,14 +20,28 @@ function App() {
     setUser(userService.getUser());
   }
 
+  useEffect(() => {
+    if (!recipeBook) return loadRecipeBook();
+  })
+
   const handleLogout = () => {
     userService.logout();
     setUser(null);
   }
 
+  // was using this function to set recipe book state upon signup but trying new strategty
+  // might not need this anymore
   const updateRecipeBook = (book) => {
     setRecipeBook({ book })
   }
+
+  const loadRecipeBook = async () => {
+    const book = await recipeService.index();
+    console.log(`This is the index? : ${book}`)
+    setRecipeBook(book);
+  }
+
+
 
   return (
     <div className="App">

@@ -21,5 +21,7 @@ async function create (req, res) {
 
 async function index (req,res) {
         let recipe = await Recipe.findById(req.user._id);
+        console.log(`this req.user in index: ${req.user.id}`);
+        console.log(`recipe in index ctrl ${recipe}`)
         return res.json(recipe);
 }

@@ -3,10 +3,12 @@ import tokenService from './tokenService';
 const BOOK_URL = '/api/recipeBooks/';
 // put recipe book entires URL here
 
-export default {
+const functions = {
     index,
     createRecipeBook,
 }
+
+export default functions
 
 function index() {
     return fetch(BOOK_URL, {

@@ -1,5 +1,14 @@
 import tokenService from './tokenService';
 
+const functions = {
+  signup,
+  getUser,
+  logout,
+  login
+}; 
+
+export default functions
+
 const BASE_URL = '/api/users/';
 
 function signup(user) {
@@ -25,7 +34,6 @@ function getUser() {
 }
 
 function login(creds) {
-  console.log(creds)
   return fetch(BASE_URL + 'login', {
     method: 'POST',
     headers: new Headers({'Content-Type': 'application/json'}),
@@ -42,10 +50,3 @@ function login(creds) {
 function logout() {
   tokenService.removeToken();
 }
-
-export default {
-  signup,
-  getUser,
-  logout,
-  login
-}; 
