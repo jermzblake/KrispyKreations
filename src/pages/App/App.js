@@ -1,12 +1,12 @@
 import logo from '../../logo.svg';
 import './App.css';
 import React, { useState } from 'react';
-import { Route, Switch, Link } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 // import pages
 import SignupPage from '../SignupPage/SignupPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RecipeBookPage from '../RecipeBookPage/RecipeBookPage';
-import Test from '../test';
+import LandingPage from '../LandingPage/LandingPage';
 // import components
 import NavBar from '../../components/NavBar/NavBar';
 // import utilities
@@ -24,10 +24,6 @@ function App() {
     setUser(null);
   }
 
-  let book = user ? 
-    <Link to='/recipeBook'>Recipe Book</Link>
-    : 
-    <h1>Krispy Kreations</h1>
 
 
   return (
@@ -41,11 +37,12 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
 
       </header>
-      {/* Either link to user recipe book or title heading */}
-      { book }
       <Switch>
-        <Route exact path='/test' render={() => (
-          <Test/>
+        <Route exact path='/' render={({ history }) => (
+          <LandingPage
+            history={history}
+            user={user}
+          />
         )}/>
         <Route exact path='/signup' render={({ history }) => (
           <SignupPage 
