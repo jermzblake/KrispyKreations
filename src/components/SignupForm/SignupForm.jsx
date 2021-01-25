@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import userService from '../../utils/userService';
-import recipeService from '../../utils/recipeService';
-
 
 function SignupForm (props) {
     const [name, setName] = useState('');

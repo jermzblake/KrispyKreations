@@ -1,46 +1,33 @@
 import logo from '../../logo.svg';
 import './App.css';
-import React, {useState, useEffect} from 'react';
-import { Route, Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Route, Switch, Link } from 'react-router-dom';
 // import pages
 import SignupPage from '../SignupPage/SignupPage';
 import LoginPage from '../LoginPage/LoginPage';
+import RecipeBookPage from '../RecipeBookPage/RecipeBookPage';
 import Test from '../test';
 // import components
 import NavBar from '../../components/NavBar/NavBar';
 // import utilities
 import userService from '../../utils/userService';
-import recipeService from '../../utils/recipeService';
 
 function App() {
   const [user, setUser] = useState(userService.getUser());
-  const [recipeBook, setRecipeBook] = useState(null);
 
   const handleSignupOrLogin = () => {
     setUser(userService.getUser());
   }
-
-  useEffect(() => {
-    if (!recipeBook) return loadRecipeBook();
-  })
 
   const handleLogout = () => {
     userService.logout();
     setUser(null);
   }
 
-  // was using this function to set recipe book state upon signup but trying new strategty
-  // might not need this anymore
-  const updateRecipeBook = (book) => {
-    setRecipeBook({ book })
-  }
-
-  const loadRecipeBook = async () => {
-    const book = await recipeService.index();
-    console.log(`This is the index? : ${book}`)
-    setRecipeBook(book);
-  }
-
+  let book = user ? 
+    <Link to='/recipeBook'>Recipe Book</Link>
+    : 
+    <h1>Krispy Kreations</h1>
 
 
   return (
@@ -54,23 +41,32 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
 
       </header>
-      <Route exact path='/test' render={() => (
-        <Test/>
-      )}/>
-      <Route exact path='/signup' render={({ history }) => (
-        <SignupPage 
-          history={history}
-          handleSignup={handleSignupOrLogin}
-          user={user}
-          updateRecipeBook={updateRecipeBook}
-        />
-      )}/>
-      <Route exact path='/login' render={({ history }) => (
-        <LoginPage
-          history={history}
-          handleLogin={handleSignupOrLogin}
-        />
-      )}/>
+      {/* Either link to user recipe book or title heading */}
+      { book }
+      <Switch>
+        <Route exact path='/test' render={() => (
+          <Test/>
+        )}/>
+        <Route exact path='/signup' render={({ history }) => (
+          <SignupPage 
+            history={history}
+            handleSignup={handleSignupOrLogin}
+            user={user}
+          />
+        )}/>
+        <Route exact path='/login' render={({ history }) => (
+          <LoginPage
+            history={history}
+            handleLogin={handleSignupOrLogin}
+          />
+        )}/>
+        <Route exact path='/recipeBook' render={({ history }) => (
+          <RecipeBookPage
+            history={history}
+            user={user}
+          />
+        )}/>
+      </Switch>
     </div>
   );
 }
