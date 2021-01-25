@@ -1,11 +1,12 @@
 import tokenService from './tokenService';
 
 const BOOK_URL = '/api/recipeBooks/';
-// put recipe book entires URL here
+const ENTRY_URL = '/api/entries/';
 
 const functions = {
     index,
     createRecipeBook,
+    createEntry
 }
 
 export default functions
@@ -21,7 +22,6 @@ function index() {
 }
   
 function createRecipeBook(user) {
-    console.log("recipeService user: " + user)
     const options = {
       method: 'POST',
       headers: {
@@ -31,4 +31,16 @@ function createRecipeBook(user) {
       body: JSON.stringify(user)
     };
     return fetch(BOOK_URL, options).then(res => res.json());
+}
+
+function createEntry(entry) {
+  const options = {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+        'Authorization': 'Bearer ' + tokenService.getToken()
+      },
+      body: JSON.stringify(entry)
+  };
+  return fetch(ENTRY_URL, options).then(res => res.json());  
 }
