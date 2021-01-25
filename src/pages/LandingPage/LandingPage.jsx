@@ -5,7 +5,7 @@ function LandingPage(props) {
     let book = props.user ? 
       <>
         <h1>Krispy Kreations</h1>
-        <Link to='/recipeBook'>Recipe Book</Link>
+        <Link to='/recipebook'>Recipe Book</Link>
       </>
       : 
       <h1>Krispy Kreations</h1>

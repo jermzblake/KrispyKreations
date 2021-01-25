@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import {Link} from 'react-router-dom';
 import recipeService from '../../utils/recipeService';
 
 function RecipeBookPage(props) {
@@ -16,13 +17,13 @@ function RecipeBookPage(props) {
 
     const loadRecipeBook = async () => {
         const book = await recipeService.index();
-        console.log(`This is the index? : ${book}`)
         setRecipeBook(book);
     }
 
     return (
         <>
         <h1>Recipe Book</h1>
+        <Link to='/recipeform'>New Recipe</Link>
         </>
     )
 

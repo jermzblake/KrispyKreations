@@ -7,6 +7,7 @@ import SignupPage from '../SignupPage/SignupPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RecipeBookPage from '../RecipeBookPage/RecipeBookPage';
 import LandingPage from '../LandingPage/LandingPage';
+import RecipeFormPage from '../RecipeFormPage/RecipeFormPage';
 // import components
 import NavBar from '../../components/NavBar/NavBar';
 // import utilities
@@ -55,8 +56,14 @@ function App() {
             handleLogin={handleSignupOrLogin}
           />
         )}/>
-        <Route exact path='/recipeBook' render={({ history }) => (
+        <Route exact path='/recipebook' render={({ history }) => (
           <RecipeBookPage
+            history={history}
+            user={user}
+          />
+        )}/>
+        <Route exact path='/recipeform' render={({ history }) => (
+          <RecipeFormPage
             history={history}
             user={user}
           />

@@ -18,3 +18,15 @@ async function create (req, res) {
         return res.json(recipe);
     })  
 }
+
+async function show (req, res) {
+
+}
+
+async function deleteOne (req, res) {
+
+}
+
+async function update (req, res) {
+
+}
