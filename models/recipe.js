@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const entrySchema = new mongoose.Schema({
     name: {type: String, required: true},
-    ingredients: {type: String, required: true},
+    ingredients: [{type: String, required: true}],
     directions: {type: String, required: true},
     category: {type: String, required: true},
     difficulty: {type: String},
