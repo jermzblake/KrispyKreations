@@ -2,14 +2,14 @@ const mongoose = require('mongoose');
 
 const entrySchema = new mongoose.Schema({
     name: {type: String, required: true},
-    ingredients: [{type: String, required: true}],
+    ingredients: {type: String, required: true},
     directions: {type: String, required: true},
     category: {type: String, required: true},
     difficulty: {type: String},
     prepTime: {type: Number},
     cookTime: {type: Number},
     servings: {type: Number},
-    cuisineType: {type: Number},
+    cuisineType: {type: String},
     image: {type: String}
 }, {
     timestamps: true
