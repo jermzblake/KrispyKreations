@@ -22,7 +22,7 @@ function RecipeBookPage(props) {
 
     return (
         <>
-        <h1>Recipe Book</h1>
+        <h1>{props.user.name}'s Recipe Book</h1>
         <Link to='/recipeform'>New Recipe</Link>
         </>
     )
