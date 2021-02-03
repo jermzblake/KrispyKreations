@@ -138,7 +138,7 @@ function RecipeEntryForm (props) {
                     rows={4}
                     placeholder="1 cup of LOVE"
                     helperText="Add a new ingredient on a new line (press enter to add line)"
-                    onChange={e => setIngredients((e.target.value.split('\n')))}
+                    onChange={e => setIngredients(e.target.value.split('\n'))}
                 />
                 <TextField
                     variant="outlined"
@@ -165,7 +165,7 @@ function RecipeEntryForm (props) {
                 </FormControl>
                 <div>
                     <Button type="submit" variant="contained" color="primary" disabled={isFormInvalid()}>Submit</Button>
-                    <Link to='/'>Cancel</Link>
+                    <Link to='/recipebook'>Cancel</Link>
                 </div>  
             </form>
         </div>
