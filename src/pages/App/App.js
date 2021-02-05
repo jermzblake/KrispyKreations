@@ -5,7 +5,7 @@ import { Route, Switch } from 'react-router-dom';
 // import pages
 import SignupPage from '../SignupPage/SignupPage';
 import LoginPage from '../LoginPage/LoginPage';
-import RecipeBookPage from '../RecipeBookPage/RecipeBookPage';
+import RecipeIndexPage from '../RecipeIndexPage/RecipeIndexPage';
 import LandingPage from '../LandingPage/LandingPage';
 import RecipeFormPage from '../RecipeFormPage/RecipeFormPage';
 // import components
@@ -32,9 +32,6 @@ function App() {
           user={user}
           handleLogout={handleLogout}
         />
-
-        <img src={logo} className="App-logo" alt="logo" />
-
       </header>
       <Switch>
         <Route exact path='/' render={({ history }) => (
@@ -57,7 +54,7 @@ function App() {
           />
         )}/>
         <Route exact path='/recipebook' render={({ history }) => (
-          <RecipeBookPage
+          <RecipeIndexPage
             history={history}
             user={user}
           />
