@@ -20,7 +20,9 @@ async function create (req, res) {
 }
 
 async function show (req, res) {
-
+    let recipes = await Recipe.findOne({'recipeEntries._id': req.params.id});
+    let entry = recipes.recipeEntries.id(req.params.id);
+    return res.json(entry);
 }
 
 async function deleteOne (req, res) {

@@ -6,7 +6,8 @@ const ENTRY_URL = '/api/entries/';
 const functions = {
     index,
     createRecipeBook,
-    createEntry
+    createEntry,
+    getEntry
 }
 
 export default functions
@@ -43,4 +44,14 @@ function createEntry(entry) {
       body: JSON.stringify(entry)
   };
   return fetch(ENTRY_URL, options).then(res => res.json());  
+}
+
+function getEntry(entryId) {
+  return fetch(`${ENTRY_URL}${entryId}`, {
+        method: 'GET',
+        headers: {
+            'Content-type': 'application/json',
+            'Authorization': 'Bearer ' + tokenService.getToken()
+          }
+  }).then(res => res.json());
 }

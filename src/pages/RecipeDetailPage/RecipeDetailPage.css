@@ -1,0 +1,8 @@
+.page-container {
+    background-color: rgb(255, 245, 231);
+    height: 900px;
+    max-width: 90%;
+    margin: 20px 40px;
+    border: 3px solid var(--green);
+    border-radius: 5px;
+}

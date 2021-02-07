@@ -8,6 +8,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import RecipeIndexPage from '../RecipeIndexPage/RecipeIndexPage';
 import LandingPage from '../LandingPage/LandingPage';
 import RecipeFormPage from '../RecipeFormPage/RecipeFormPage';
+import RecipeDetailPage from '../RecipeDetailPage/RecipeDetailPage';
 // import components
 import NavBar from '../../components/NavBar/NavBar';
 // import utilities
@@ -59,6 +60,12 @@ function App() {
             user={user}
           />
         )}/>
+        <Route path="/recipebook/:id" render={props => 
+          <RecipeDetailPage 
+            {...props}
+            user={user}
+          />
+        }/>
         <Route exact path='/recipeform' render={({ history }) => (
           <RecipeFormPage
             history={history}

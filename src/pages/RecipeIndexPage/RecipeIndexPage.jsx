@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, Route} from 'react-router-dom';
 import './RecipeIndexPage.css';
 import recipeService from '../../utils/recipeService';
 import RecipeBookEntries from '../../components/RecipeBookEntries/RecipeBookEntries';
+import RecipeDetailPage from '../RecipeDetailPage/RecipeDetailPage';
 
 // const useStyles = makeStyles((theme) => ({
 //   root: {
@@ -48,6 +49,13 @@ function RecipeIndexPage(props) {
                         />   
                     ))}
                 </div>
+                {/* <Route path="/recipebook/:id" render={props => 
+                    <RecipeDetailPage 
+                        {...props}
+                        updateRecipeBook={updateRecipeBook}
+                        recipeBook={recipeBook}
+                    />
+                }/> */}
             </div>
         )
     }

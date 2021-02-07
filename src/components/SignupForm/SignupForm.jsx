@@ -23,7 +23,7 @@ function SignupForm (props) {
             console.log(err.message)
             // Invalid user data (probably duplicate email)
             props.updateMessage(err.message);
-            }        
+        }        
     }
 
     const isFormInvalid = () => {
