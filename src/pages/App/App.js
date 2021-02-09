@@ -9,6 +9,7 @@ import RecipeIndexPage from '../RecipeIndexPage/RecipeIndexPage';
 import LandingPage from '../LandingPage/LandingPage';
 import RecipeFormPage from '../RecipeFormPage/RecipeFormPage';
 import RecipeDetailPage from '../RecipeDetailPage/RecipeDetailPage';
+import RecipeUpdatePage from '../RecipeUpdatePage/RecipeUpdatePage';
 // import components
 import NavBar from '../../components/NavBar/NavBar';
 // import utilities
@@ -72,6 +73,12 @@ function App() {
             user={user}
           />
         )}/>
+        <Route exact path='/recipebook/edit/:id' render={props =>
+          <RecipeUpdatePage
+            {...props}
+            user={user}
+          />
+        }/>
       </Switch>
     </div>
   );
