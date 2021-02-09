@@ -26,7 +26,11 @@ async function show (req, res) {
 }
 
 async function deleteOne (req, res) {
-
+    let recipes = await Recipe.findOne({'recipeEntries._id': req.params.id});
+    recipes.recipeEntries.id(req.params.id).remove();
+    recipes.save(function(err){
+        return res.json(recipes)
+    })
 }
 
 async function update (req, res) {

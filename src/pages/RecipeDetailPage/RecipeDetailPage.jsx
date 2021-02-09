@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import './RecipeDetailPage.css';
 import recipeService from '../../utils/recipeService';
 import IngredientList from '../../components/IngredientList/IngredientList';
-
+import Button from '@material-ui/core/Button';
 
 
 
@@ -25,6 +25,11 @@ export default function RecipeDetailPage({match, history, user}) {
         }
     }
 
+    const handleDelete = async (e) => {
+        await recipeService.deleteEntry(recipe)
+        history.push('/recipebook')
+    }
+
     return (
         <>
             <h1>{user.name}'s Recipe Book</h1>
@@ -42,6 +47,9 @@ export default function RecipeDetailPage({match, history, user}) {
                 <p>{recipe.cookTime}</p>
                 <p>{recipe.servings}</p>
                 <p>{recipe.difficulty}</p>
+                <Button variant="contained" color="secondary" onClick={handleDelete}>
+                    DELETE
+                </Button>
             </div>
         </>
     )
