@@ -4,19 +4,8 @@ import './RecipeIndexPage.css';
 import recipeService from '../../utils/recipeService';
 import RecipeBookEntries from '../../components/RecipeBookEntries/RecipeBookEntries';
 
-// const useStyles = makeStyles((theme) => ({
-//   root: {
-//     flexGrow: 1,
-//   },
-//   paper: {
-//     padding: theme.spacing(2),
-//     margin: 'auto',
-//     maxWidth: 500,
-//   },
-// }));
 
 function RecipeIndexPage(props) {
-    // const classes = useStyles();
     const [recipeBook, setRecipeBook] = useState('');
 
     useEffect(() => {
