@@ -50,6 +50,7 @@ export default function RecipeDetailPage({match, history, user}) {
                 <Button variant="contained" color="secondary" onClick={handleDelete}>
                     DELETE
                 </Button>
+                <Button variant="contained" href={`/recipe/edit/${recipe._id}`}>Update</Button>
             </div>
         </>
     )

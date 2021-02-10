@@ -73,7 +73,7 @@ function App() {
             user={user}
           />
         )}/>
-        <Route exact path='/recipebook/edit/:id' render={props =>
+        <Route exact path='/recipe/edit/:id' render={props =>
           <RecipeUpdatePage
             {...props}
             user={user}

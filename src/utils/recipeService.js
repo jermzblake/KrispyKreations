@@ -8,7 +8,8 @@ const functions = {
     createRecipeBook,
     createEntry,
     getEntry,
-    deleteEntry
+    deleteEntry,
+    updateEntry
 }
 
 export default functions
@@ -58,7 +59,8 @@ function getEntry(entryId) {
 }
 
 function deleteEntry(entry) {
-  console.log(entry._id)
+  console.log('recipe service entry: ' + entry)
+  console.log('recipe service entry id: ' + entry._id)
   const options = {
       method: 'DELETE',
       headers: {
@@ -68,4 +70,18 @@ function deleteEntry(entry) {
       body: JSON.stringify(entry)
   };
   return fetch(`${ENTRY_URL}${entry._id}`, options).then(res => res.json()); 
+}
+
+function updateEntry(entry){
+  console.log('recipe service entry: ' + entry)
+  console.log('recipe service entry id: ' + entry.entryId)
+  const options = {
+    method: 'PUT',
+    headers: {
+      'Content-type': 'application/json',
+      'Authorization': 'Bearer ' + tokenService.getToken()
+    },
+    body: JSON.stringify(entry)
+  };
+  return fetch(`${ENTRY_URL}${entry.entryId}`, options).then(res => res.json());  
 }

@@ -68,19 +68,23 @@ function RecipeEntryForm (props) {
 
     const addEntry = async(e) => {
         e.preventDefault();
-        await recipeService.createEntry({
-            name,
-            ingredients,
-            directions,
-            category,
-            difficulty,
-            prepTime,
-            cookTime,
-            servings,
-            cuisineType,
-            image
-        });
-        props.history.push('/recipebook');
+        try{
+            await recipeService.createEntry({
+                name,
+                ingredients,
+                directions,
+                category,
+                difficulty,
+                prepTime,
+                cookTime,
+                servings,
+                cuisineType,
+                image
+            });
+            props.history.push('/recipebook');
+        } catch(err) {
+            console.log(err)
+        }
     }
 
     const isFormInvalid = () => {
