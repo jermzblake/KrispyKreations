@@ -79,7 +79,7 @@ export default function RecipeUpdateForm({match, history}) {
         recipeService.getEntry(match.params.id)
         .then(entry => {
             setName(entry.name)
-            setIngredients(entry.ingredients)
+            setIngredients(entry.ingredients.join('\n'))
             setDirections(entry.directions)
             setCategory(entry.category)
             setDifficulty(entry.difficulty)
@@ -93,10 +93,11 @@ export default function RecipeUpdateForm({match, history}) {
 
     const updateEntry = async(e) => {
         e.preventDefault();
+        let ingredientsArr = ingredients.split('\n') // convert string of ingredients to array of ingredient strings
         try{
             await recipeService.updateEntry({
                 name,
-                ingredients,
+                ingredients: ingredientsArr,
                 directions,
                 category,
                 difficulty,
@@ -107,9 +108,9 @@ export default function RecipeUpdateForm({match, history}) {
                 image,
                 entryId
             });
-            history.push('/recipebook');
+            history.push(`/recipebook/${entryId}`);
         } catch (err) {
-            console.log(`Error: ${err}`)
+            console.log(`Error: ${err.message}`)
         }
     }
 
@@ -169,9 +170,10 @@ export default function RecipeUpdateForm({match, history}) {
                     multiline
                     rows={4}
                     // value={ingredients.join('\n')}
+                    value={ingredients}
                     placeholder="previously stored ingredients will be replaced with what you enter now or remain unchanged if you do not type anything"
                     helperText="Add a new ingredient on a new line (press enter to add line)"
-                    onChange={e => setIngredients(e.target.value.split('\n'))}
+                    onChange={e => setIngredients(e.target.value)}
                 />
                 <TextField
                     variant="outlined"
