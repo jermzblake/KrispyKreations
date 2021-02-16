@@ -84,6 +84,7 @@ function RecipeEntryForm (props) {
             props.history.push('/recipebook');
         } catch(err) {
             console.log(err)
+            props.updateMessage(err.message);
         }
     }
 

@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function RecipeUpdateForm({match, history}) {
+export default function RecipeUpdateForm({match, history, updateMessage}) {
     const classes = useStyles();
     const [name, setName] = useState('');
     const [ingredients, setIngredients] = useState('');
@@ -111,6 +111,7 @@ export default function RecipeUpdateForm({match, history}) {
             history.push(`/recipebook/${entryId}`);
         } catch (err) {
             console.log(`Error: ${err.message}`)
+            updateMessage(err.message);
         }
     }
 
