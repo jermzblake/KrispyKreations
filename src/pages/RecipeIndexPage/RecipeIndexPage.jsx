@@ -123,17 +123,13 @@ function RecipeIndexPage(props) {
     // search for recipes based on whats entered in the search bar. 
     // On the spot search using recipeBook from current state (including filtered results)
     // ***REMOVE CONSOLE LOGS
-    // probably a more efficient way to do this...
+    // probably a more efficient way to do this...  store a default book in state?
     const handleSearch = (e) => {
-        console.log(e.target.value)
         let reg = new RegExp(e.target.value,'gi')  //create regExp based on e.target.value to match below
-        let searchResult = recipeBook.filter(recipe => recipe.name.match(reg))
-        console.log(searchResult)
-        if (searchResult.length > 0) {
-            setRecipeBook(searchResult)
-        } else {
-            loadRecipeBook()
-        }
+        let searchResult = recipeBook.filter(recipe => recipe.name.match(reg));
+
+        // if searchResult has elements set it to state otherwise just load default recipe book
+        searchResult.length > 0 ? setRecipeBook(searchResult) : loadRecipeBook()
     }
 
     if(recipeBook && recipeBook.length > 0) {
