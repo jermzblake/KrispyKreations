@@ -6,7 +6,7 @@ module.exports = {
 }
 
 // Creating initial recipe book through user controller signup. 
-// This create function can be used if subsequent recipe books need to be created.
+// This create function can be used if subsequent recipe books need to be created. *Not likely needed*
 async function create (req, res) {
     let recipe = await new Recipe(req.body);
     recipe.user = (req.user._id);
@@ -20,6 +20,6 @@ async function create (req, res) {
 };
 
 async function index (req,res) {
-        let recipe = await Recipe.findOne({user: req.user._id});
-        return res.json(recipe);
+    let userRecipes = await Recipe.findOne({user: req.user._id});
+    return res.json(userRecipes);
 }
