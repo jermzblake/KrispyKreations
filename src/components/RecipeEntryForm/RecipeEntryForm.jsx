@@ -168,6 +168,12 @@ function RecipeEntryForm (props) {
                     <OutlinedInput id="serving-size" type="number" onChange={e => setServings(e.target.value)} aria-describedby="serving-helper-text" />
                     <FormHelperText id="serving-helper-text">Enter serving size</FormHelperText>
                 </FormControl>
+                <br />
+                <FormControl>
+                    <InputLabel htmlFor="image-url">Image</InputLabel>
+                    <OutlinedInput id="image-url" type="text" onChange={e => setImage(e.target.value)} aria-describedby="image-helper-text" />
+                    <FormHelperText id="image-helper-text">Enter URL of image location</FormHelperText>
+                </FormControl>
                 <div>
                     <Button type="submit" variant="contained" color="primary" disabled={isFormInvalid()}>Submit</Button>
                     <Link to='/recipebook'>Cancel</Link>

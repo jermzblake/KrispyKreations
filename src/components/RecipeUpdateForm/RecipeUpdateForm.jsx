@@ -170,9 +170,8 @@ export default function RecipeUpdateForm({match, history, updateMessage}) {
                     label="Ingredients"
                     multiline
                     rows={4}
-                    // value={ingredients.join('\n')}
                     value={ingredients}
-                    placeholder="previously stored ingredients will be replaced with what you enter now or remain unchanged if you do not type anything"
+                    // placeholder="previously stored ingredients will be replaced with what you enter now or remain unchanged if you do not type anything"
                     helperText="Add a new ingredient on a new line (press enter to add line)"
                     onChange={e => setIngredients(e.target.value)}
                 />
@@ -214,6 +213,17 @@ export default function RecipeUpdateForm({match, history, updateMessage}) {
                      value={servings || ''} 
                      aria-describedby="serving-helper-text" />
                     <FormHelperText id="serving-helper-text">Enter serving size</FormHelperText>
+                </FormControl>
+                <br />
+                <FormControl>
+                    <InputLabel htmlFor="image-url" shrin>Image</InputLabel>
+                    <OutlinedInput 
+                     id="image-url"
+                     type="text" 
+                     onChange={e => setImage(e.target.value)} 
+                     value={image || ''}
+                     aria-describedby="image-helper-text" />
+                    <FormHelperText id="image-helper-text">Enter URL of image location</FormHelperText>
                 </FormControl>
                 <div>
                     <Button type="submit" variant="contained" color="primary" disabled={isFormInvalid()}>Submit</Button>

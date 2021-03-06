@@ -20,12 +20,12 @@ const useStyles = makeStyles((theme) => ({
     '&:hover': {
       backgroundColor: fade(theme.palette.success.light, 0.25),
     },
-    marginLeft: 0,
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-      marginLeft: theme.spacing(1),
-      width: 'auto',
-    },
+    margin: '0 auto',
+    width: '50%',
+    // [theme.breakpoints.up('sm')]: {
+    //   marginLeft: theme.spacing(1),
+    //   width: 'auto',
+    // },
   },
   searchIcon: {
     padding: theme.spacing(0, 2),
