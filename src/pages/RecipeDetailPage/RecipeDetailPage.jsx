@@ -30,6 +30,9 @@ export default function RecipeDetailPage({match, history, user}) {
         history.push('/recipebook')
     }
 
+    // if user's recipe has an image display it otherwise line break
+    const imageDisplay = (recipe.image) ? <img src={recipe.image}  alt="food image"/> : <br />
+
     return (
         <>
             <h1>{user.name}'s Recipe Book</h1>
@@ -40,13 +43,20 @@ export default function RecipeDetailPage({match, history, user}) {
                 <Link to="/recipebook">Back</Link>
                 <h2>{recipe.name}</h2>
                 <h4>{recipe.category}</h4>
+                <p>{recipe.cuisineType}</p>
+                <br />
+                {imageDisplay}
                 <IngredientList ingredients={ingredients} />
 
             
+
+                <p>Prep Time: {recipe.prepTime || 'N/A'} Cook Time:{recipe.cookTime || 'N/A'} </p>
+                <p>Serving Size: {recipe.servings}</p>
+                <p>Difficulty: {recipe.difficulty}</p>
+                <br />
+                <br />
+                <h3>Directions</h3>
                 <p>{recipe.directions}</p>
-                <p>{recipe.cookTime}</p>
-                <p>{recipe.servings}</p>
-                <p>{recipe.difficulty}</p>
                 <Button variant="contained" color="secondary" onClick={handleDelete}>
                     DELETE
                 </Button>
