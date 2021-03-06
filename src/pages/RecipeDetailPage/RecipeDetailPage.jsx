@@ -31,7 +31,7 @@ export default function RecipeDetailPage({match, history, user}) {
     }
 
     // if user's recipe has an image display it otherwise line break
-    const imageDisplay = (recipe.image) ? <img src={recipe.image}  alt="food image"/> : <br />
+    const imageDisplay = (recipe.image) ? <img src={recipe.image}  alt="food"/> : <br />
 
     return (
         <>

@@ -70,11 +70,6 @@ export default function RecipeUpdateForm({match, history, updateMessage}) {
     // use this for routing purposes and to link back to detail page
     const entryId = match.params.id;
 
-    // after initial load set state to previous recipe values
-    useEffect(() => {
-        return getRecipeEntryState();
-    }, [])
-
     const getRecipeEntryState = async () => {
         recipeService.getEntry(match.params.id)
         .then(entry => {
@@ -90,6 +85,11 @@ export default function RecipeUpdateForm({match, history, updateMessage}) {
             setImage(entry.image)
         })
     }
+
+    // after initial load set state to previous recipe values
+    useEffect(() => {
+        return getRecipeEntryState();
+    }, [])
 
     const updateEntry = async(e) => {
         e.preventDefault();
