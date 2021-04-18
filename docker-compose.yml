@@ -19,7 +19,7 @@ services:
             - MONGO_DB=$MONGO_DB
         # build: .
         ports:
-            - '3000:3000'
+            - '3000:3001'
         links:
             - mongo
     mongo:
