@@ -1,0 +1,33 @@
+version: "3.7"
+
+services:
+    app:
+        image: jermzblake/kk
+        container_name: krispy_kreations
+        restart: always
+        build:
+            context: .
+            dockerfile: Dockerfile
+        # stdin_open: true
+        # tty: true
+        env_file: .env
+        environment: 
+            - MONGO_USERNAME=$MONGO_USERNAME
+            - MONGO_PASSWORD=$MONGO_PASSWORD
+            - MONGO_HOSTNAME=db
+            - MONGO_PORT=$MONGO_PORT
+            - MONGO_DB=$MONGO_DB
+        # build: .
+        ports:
+            - '3000:3000'
+        links:
+            - mongo
+    mongo:
+        image: mongo
+        container_name: db
+        env_file: .env
+        environment:
+          - MONGO_INITDB_ROOT_USERNAME=$MONGO_USERNAME
+          - MONGO_INITDB_ROOT_PASSWORD=$MONGO_PASSWORD
+        ports:
+            - '27017:27017'
