@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
 import './RecipeDetailPage.css';
-import recipeService from '../../utils/recipeService';
-import IngredientList from '../../components/IngredientList/IngredientList';
+import recipeService from '../../../utils/recipeService';
+import IngredientList from '../../IngredientList/IngredientList';
 import Button from '@material-ui/core/Button';
 
 
