@@ -46,7 +46,7 @@ function LoginPage (props) {
             <form autoComplete="off" onSubmit={handleSubmit}>
                 <Box className={classes.root}>
                     <TextField 
-
+                        className={classes.margin}
                         variant="filled"
                         type="email"
                         label="Email"
