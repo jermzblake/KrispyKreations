@@ -12,7 +12,13 @@ const useStyles = makeStyles({
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'column',
-        border: '1px solid red'
+    },
+    margin: {
+        marginTop: 10,
+        marginBottom: 10,
+    },
+    mR: {
+        marginRight: 10
     }
 })
 
@@ -40,6 +46,7 @@ function LoginPage (props) {
             <form autoComplete="off" onSubmit={handleSubmit}>
                 <Box className={classes.root}>
                     <TextField 
+
                         variant="filled"
                         type="email"
                         label="Email"
@@ -47,15 +54,16 @@ function LoginPage (props) {
                         onChange={e => setEmail(e.target.value)}
                     />
                     <TextField
+                        className={classes.margin}
                         type="password" 
                         variant="filled"
                         label="Password"
                         onChange={e => setPassword(e.target.value)}
                     />
-                    <div>
-                        <Button type="submit" variant="contained" color="primary" >Login</Button>
+                    <Box className={classes.margin}>
+                        <Button className={classes.mR} type="submit" variant="contained" color="primary" >Login</Button>
                         <Link to='/'>Cancel</Link>
-                    </div>  
+                    </Box>  
                 </Box> 
             </form>
         </>
