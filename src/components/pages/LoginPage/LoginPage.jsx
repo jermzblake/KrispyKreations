@@ -3,10 +3,23 @@ import {Link} from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import userService from '../../../utils/userService';
+import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box'
+
+const useStyles = makeStyles({
+    root: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'column',
+        border: '1px solid red'
+    }
+})
 
 function LoginPage (props) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const classes = useStyles();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -25,23 +38,25 @@ function LoginPage (props) {
             <h1>Login</h1>
             <br/><br/>
             <form autoComplete="off" onSubmit={handleSubmit}>
-                <TextField 
-                    variant="filled"
-                    type="email"
-                    label="Email"
-                    placeholder="example@email.com"
-                    onChange={e => setEmail(e.target.value)}
-                />
-                <TextField
-                    type="password" 
-                    variant="filled"
-                    label="Password"
-                    onChange={e => setPassword(e.target.value)}
-                />
-                <div>
-                    <Button type="submit" variant="contained" color="primary" >Login</Button>
-                    <Link to='/'>Cancel</Link>
-                </div>   
+                <Box className={classes.root}>
+                    <TextField 
+                        variant="filled"
+                        type="email"
+                        label="Email"
+                        placeholder="example@email.com"
+                        onChange={e => setEmail(e.target.value)}
+                    />
+                    <TextField
+                        type="password" 
+                        variant="filled"
+                        label="Password"
+                        onChange={e => setPassword(e.target.value)}
+                    />
+                    <div>
+                        <Button type="submit" variant="contained" color="primary" >Login</Button>
+                        <Link to='/'>Cancel</Link>
+                    </div>  
+                </Box> 
             </form>
         </>
     )
