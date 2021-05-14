@@ -3,11 +3,13 @@ import {Link} from 'react-router-dom';
 import './RecipeIndexPage.css';
 import recipeService from '../../../utils/recipeService';
 import RecipeBookEntries from '../../RecipeBookEntries/RecipeBookEntries';
-import Button from '@material-ui/core/Button';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
 import InputBase from '@material-ui/core/InputBase';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
+import Select from '@material-ui/core/Select';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -52,11 +54,16 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
+  formControl: {
+      margin: theme.spacing(1),
+      minWidth: 150,
+  },
 }));
 
 function RecipeIndexPage(props) {
     const classes = useStyles();
     const [recipeBook, setRecipeBook] = useState('');
+    const [filter, setFilter] = useState('');
 
     useEffect(() => {
         if (!recipeBook) return loadRecipeBook();
@@ -115,9 +122,9 @@ function RecipeIndexPage(props) {
     }
 
     const handleFilterClick = (e) => {
-        // pass either target.id or target.innerHTML to loadRecipeBook
-        // this way no matter where on the button is clicked the correct target will be captured
-        loadRecipeBook(e.target.id || e.target.innerHTML)
+        setFilter(e.target.value)
+        // TODO should loadRecipe book getting it's value from state...?
+        loadRecipeBook(e.target.value)
     }
 
     // search for recipes based on whats entered in the search bar. 
@@ -140,15 +147,24 @@ function RecipeIndexPage(props) {
                 <br />
 
                 <div className='page-container'>
-                    <div>
-                        <ButtonGroup aria-label="recipe filter button group">
-                        <Button id="ALLRECIPES" onClick={handleFilterClick}>ALL RECIPES</Button>
-                        <Button id="BREAKFAST" onClick={handleFilterClick}>BREAKFAST</Button>
-                        <Button id="LUNCH" onClick={handleFilterClick}>LUNCH</Button>
-                        <Button id="DINNER" onClick={handleFilterClick}>DINNER</Button>
-                        <Button id="TREAT" onClick={handleFilterClick}>TREAT</Button>
-                        </ButtonGroup>
-                    </div>
+                    <FormControl variant="outlined" className={classes.formControl}>
+                        <InputLabel id="filter-select-label">Filter</InputLabel>
+                        <Select
+                            labelId="filter-select-label"
+                            id="filter-select"
+                            value={filter}
+                            onChange={handleFilterClick}
+                            label="Filter"
+                        >
+                            <MenuItem value={"ALLRECIPES"}>
+                                <em>None</em>
+                            </MenuItem>
+                            <MenuItem value={"BREAKFAST"}>BREAKFAST</MenuItem>
+                            <MenuItem value={"LUNCH"}>LUNCH</MenuItem>
+                            <MenuItem value={"DINNER"}>DINNER</MenuItem>
+                            <MenuItem value={"TREAT"}>TREAT</MenuItem>
+                        </Select>
+                    </FormControl>
                     <div className={classes.search}>
                         <div className={classes.searchIcon}>
                             <SearchIcon />
