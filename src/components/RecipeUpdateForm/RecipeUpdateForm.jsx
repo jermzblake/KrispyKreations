@@ -70,26 +70,26 @@ export default function RecipeUpdateForm({match, history, updateMessage}) {
     // use this for routing purposes and to link back to detail page
     const entryId = match.params.id;
 
+    const getRecipeEntryState = async () => {
+        recipeService.getEntry(match.params.id)
+        .then(entry => {
+            setName(entry.name)
+            setIngredients(entry.ingredients.join('\n'))
+            setDirections(entry.directions)
+            setCategory(entry.category)
+            setDifficulty(entry.difficulty)
+            setPrepTime(entry.prepTime)
+            setCookTime(entry.cookTime)
+            setServings(entry.servings)
+            setCuisineType(entry.cuisineType)
+            setImage(entry.image)
+        })
+    }
+
     // after initial load set state to previous recipe values
     useEffect(() => {
-        const getRecipeEntryState = async () => {
-            recipeService.getEntry(match.params.id)
-            .then(entry => {
-                setName(entry.name)
-                setIngredients(entry.ingredients.join('\n'))
-                setDirections(entry.directions)
-                setCategory(entry.category)
-                setDifficulty(entry.difficulty)
-                setPrepTime(entry.prepTime)
-                setCookTime(entry.cookTime)
-                setServings(entry.servings)
-                setCuisineType(entry.cuisineType)
-                setImage(entry.image)
-            })
-        };
-
-        getRecipeEntryState()
-    }, [match.params.id])    // adding match.params.id to list of dependencies to satisfy exhaustive-deps ESLint rule
+        return getRecipeEntryState();
+    }, [])
 
     const updateEntry = async(e) => {
         e.preventDefault();
