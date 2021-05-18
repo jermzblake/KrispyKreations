@@ -1,19 +1,18 @@
-import logo from '../../logo.svg';
 import './App.css';
 import React, { useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 // import pages
-import SignupPage from '../SignupPage/SignupPage';
-import LoginPage from '../LoginPage/LoginPage';
-import RecipeIndexPage from '../RecipeIndexPage/RecipeIndexPage';
-import LandingPage from '../LandingPage/LandingPage';
-import RecipeFormPage from '../RecipeFormPage/RecipeFormPage';
-import RecipeDetailPage from '../RecipeDetailPage/RecipeDetailPage';
-import RecipeUpdatePage from '../RecipeUpdatePage/RecipeUpdatePage';
+import SignupPage from '../components/pages/SignupPage/SignupPage';
+import LoginPage from '../components/pages/LoginPage/LoginPage';
+import RecipeIndexPage from '../components/pages/RecipeIndexPage/RecipeIndexPage';
+import LandingPage from '../components/pages/LandingPage/LandingPage';
+import RecipeFormPage from '../components/pages/RecipeFormPage/RecipeFormPage';
+import RecipeDetailPage from '../components/pages/RecipeDetailPage/RecipeDetailPage';
+import RecipeUpdatePage from '../components/pages/RecipeUpdatePage/RecipeUpdatePage';
 // import components
-import NavBar from '../../components/NavBar/NavBar';
+import NavBar from '../components/NavBar/NavBar';
 // import utilities
-import userService from '../../utils/userService';
+import userService from '../utils/userService';
 
 function App() {
   const [user, setUser] = useState(userService.getUser());

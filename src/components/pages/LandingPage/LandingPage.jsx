@@ -5,10 +5,16 @@ function LandingPage(props) {
     let book = props.user ? 
       <>
         <h1>Krispy Kreations</h1>
+        <h3>Under Construction</h3>
+        <p>please bare with us</p>
         <Link to='/recipebook'>Recipe Book</Link>
       </>
       : 
+      <>
       <h1>Krispy Kreations</h1>
+      <h3>Under Construction</h3>
+      <p>please bare with us</p>
+      </>
 
     return (
         <div>

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import RecipeUpdateForm from '../../components/RecipeUpdateForm/RecipeUpdateForm';
+import RecipeUpdateForm from '../../RecipeUpdateForm/RecipeUpdateForm';
 
 export default function RecipeUpdatePage(props) {
     const [message, setMessage] = useState('');
