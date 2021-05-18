@@ -1,13 +1,16 @@
 import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import './RecipeIndexPage.css';
-import recipeService from '../../utils/recipeService';
-import RecipeBookEntries from '../../components/RecipeBookEntries/RecipeBookEntries';
-import Button from '@material-ui/core/Button';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
+import recipeService from '../../../utils/recipeService';
+import RecipeBookEntries from '../../RecipeBookEntries/RecipeBookEntries';
 import InputBase from '@material-ui/core/InputBase';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
+import Select from '@material-ui/core/Select';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,6 +24,9 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: fade(theme.palette.success.light, 0.25),
     },
     margin: '0 auto',
+    marginTop: 16,
+    marginLeft: 76,
+    // margin: theme.spacing(1),
     width: '50%',
     // [theme.breakpoints.up('sm')]: {
     //   marginLeft: theme.spacing(1),
@@ -28,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
     // },
   },
   searchIcon: {
-    padding: theme.spacing(0, 2),
+    padding: theme.spacing(0, 1),
     height: '100%',
     position: 'absolute',
     pointerEvents: 'none',
@@ -44,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
     // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
     transition: theme.transitions.create('width'),
-    width: '100%',
+    width: '70%',
     [theme.breakpoints.up('sm')]: {
       width: '12ch',
       '&:focus': {
@@ -52,20 +58,20 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
+  formControl: {
+      margin: theme.spacing(1),
+      minWidth: 150,
+  },
 }));
 
 function RecipeIndexPage(props) {
     const classes = useStyles();
     const [recipeBook, setRecipeBook] = useState('');
+    const [filter, setFilter] = useState('');
 
     useEffect(() => {
         if (!recipeBook) return loadRecipeBook();
     })
-
-  // I don't need this yet but it's here for updating state after CRUD if needed
-    const updateRecipeBook = (updatedBook) => {
-        setRecipeBook({ updatedBook })
-    }
 
     // filter is the value passed in from handleFilterClick
     const loadRecipeBook = async (filter) => {
@@ -115,9 +121,9 @@ function RecipeIndexPage(props) {
     }
 
     const handleFilterClick = (e) => {
-        // pass either target.id or target.innerHTML to loadRecipeBook
-        // this way no matter where on the button is clicked the correct target will be captured
-        loadRecipeBook(e.target.id || e.target.innerHTML)
+        setFilter(e.target.value)
+        // TODO should loadRecipe book getting it's value from state...?
+        loadRecipeBook(e.target.value)
     }
 
     // search for recipes based on whats entered in the search bar. 
@@ -140,15 +146,28 @@ function RecipeIndexPage(props) {
                 <br />
 
                 <div className='page-container'>
-                    <div>
-                        <ButtonGroup aria-label="recipe filter button group">
-                        <Button id="ALLRECIPES" onClick={handleFilterClick}>ALL RECIPES</Button>
-                        <Button id="BREAKFAST" onClick={handleFilterClick}>BREAKFAST</Button>
-                        <Button id="LUNCH" onClick={handleFilterClick}>LUNCH</Button>
-                        <Button id="DINNER" onClick={handleFilterClick}>DINNER</Button>
-                        <Button id="TREAT" onClick={handleFilterClick}>TREAT</Button>
-                        </ButtonGroup>
-                    </div>
+                        <Grid container xs={12} className={classes.root} >
+                            < Grid item xs={4}>
+                    <FormControl variant="outlined" className={classes.formControl}>
+                        <InputLabel id="filter-select-label">Filter</InputLabel>
+                        <Select
+                            labelId="filter-select-label"
+                            id="filter-select"
+                            value={filter}
+                            onChange={handleFilterClick}
+                            label="Filter"
+                        >
+                            <MenuItem value={"ALLRECIPES"}>
+                                <em>None</em>
+                            </MenuItem>
+                            <MenuItem value={"BREAKFAST"}>BREAKFAST</MenuItem>
+                            <MenuItem value={"LUNCH"}>LUNCH</MenuItem>
+                            <MenuItem value={"DINNER"}>DINNER</MenuItem>
+                            <MenuItem value={"TREAT"}>TREAT</MenuItem>
+                        </Select>
+                    </FormControl>
+                            </ Grid>
+                            <Grid item xs={8}>
                     <div className={classes.search}>
                         <div className={classes.searchIcon}>
                             <SearchIcon />
@@ -163,10 +182,11 @@ function RecipeIndexPage(props) {
                             onChange={handleSearch}
                         />
                     </div>
+                            </Grid>
+                        </Grid>
                     {recipeBook.map((entry, idx) => (
                         <RecipeBookEntries
                             recipeEntry={entry}
-                            updateRecipeBook={updateRecipeBook}
                             {...props}
                             key={idx}
                         />   

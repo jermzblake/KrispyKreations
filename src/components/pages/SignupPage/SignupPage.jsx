@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import RecipeEntryForm from '../../components/RecipeEntryForm/RecipeEntryForm';
+import SignupForm from '../../SignupForm/SignupForm';
 
-function RecipeFormPage (props) {
+function SignupPage (props) {
     const [message, setMessage] = useState('');
 
     const updateMessage = (msg) => {
@@ -10,11 +10,10 @@ function RecipeFormPage (props) {
 
     return (
         <div>
-            <RecipeEntryForm {...props} updateMessage={updateMessage} />
+            <SignupForm {...props} updateMessage={updateMessage} />
             <p>{message}</p>
         </div>
     )
-
 }
 
-export default RecipeFormPage;
+export default SignupPage;
