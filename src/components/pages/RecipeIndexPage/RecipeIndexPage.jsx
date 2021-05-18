@@ -9,7 +9,8 @@ import SearchIcon from '@material-ui/icons/Search';
 import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem'
+import MenuItem from '@material-ui/core/MenuItem';
+import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,6 +24,9 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: fade(theme.palette.success.light, 0.25),
     },
     margin: '0 auto',
+    marginTop: 16,
+    marginLeft: 76,
+    // margin: theme.spacing(1),
     width: '50%',
     // [theme.breakpoints.up('sm')]: {
     //   marginLeft: theme.spacing(1),
@@ -30,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
     // },
   },
   searchIcon: {
-    padding: theme.spacing(0, 2),
+    padding: theme.spacing(0, 1),
     height: '100%',
     position: 'absolute',
     pointerEvents: 'none',
@@ -46,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
     // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
     transition: theme.transitions.create('width'),
-    width: '100%',
+    width: '70%',
     [theme.breakpoints.up('sm')]: {
       width: '12ch',
       '&:focus': {
@@ -68,11 +72,6 @@ function RecipeIndexPage(props) {
     useEffect(() => {
         if (!recipeBook) return loadRecipeBook();
     })
-
-  // I don't need this yet but it's here for updating state after CRUD if needed
-    const updateRecipeBook = (updatedBook) => {
-        setRecipeBook({ updatedBook })
-    }
 
     // filter is the value passed in from handleFilterClick
     const loadRecipeBook = async (filter) => {
@@ -147,6 +146,8 @@ function RecipeIndexPage(props) {
                 <br />
 
                 <div className='page-container'>
+                        <Grid container xs={12} className={classes.root} >
+                            < Grid item xs={4}>
                     <FormControl variant="outlined" className={classes.formControl}>
                         <InputLabel id="filter-select-label">Filter</InputLabel>
                         <Select
@@ -165,6 +166,8 @@ function RecipeIndexPage(props) {
                             <MenuItem value={"TREAT"}>TREAT</MenuItem>
                         </Select>
                     </FormControl>
+                            </ Grid>
+                            <Grid item xs={8}>
                     <div className={classes.search}>
                         <div className={classes.searchIcon}>
                             <SearchIcon />
@@ -179,10 +182,11 @@ function RecipeIndexPage(props) {
                             onChange={handleSearch}
                         />
                     </div>
+                            </Grid>
+                        </Grid>
                     {recipeBook.map((entry, idx) => (
                         <RecipeBookEntries
                             recipeEntry={entry}
-                            updateRecipeBook={updateRecipeBook}
                             {...props}
                             key={idx}
                         />   
