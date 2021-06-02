@@ -4,10 +4,31 @@ import './RecipeDetailPage.css';
 import recipeService from '../../../utils/recipeService';
 import IngredientList from '../../IngredientList/IngredientList';
 import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid'
+import { makeStyles, Box } from '@material-ui/core';
+import DeleteIcon from '@material-ui/icons/Delete';
 
-
+const useStyles = makeStyles((theme) =>({
+    root: {
+        flexGrow: 1,
+    },
+    margin: {
+        marginTop: 10,
+        marginBottom: 10,
+    },
+    mRL: {
+        marginRight: 10,
+        marginLeft: 10
+    },
+    center: {
+        display: 'block',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+    }
+}))
 
 export default function RecipeDetailPage({match, history, user}) {
+    const classes = useStyles()
     const [recipe, setRecipe] = useState('')
     const [ingredients, setIngredients] = useState([])
     
@@ -39,28 +60,49 @@ export default function RecipeDetailPage({match, history, user}) {
             <Link to='/recipeform'>Create New Recipe</Link>
 
             <div className='page-container'>
-                <h1>Detail Page</h1>
-                <Link to="/recipebook">Back</Link>
-                <h2>{recipe.name}</h2>
-                <h4>{recipe.category}</h4>
-                <p>{recipe.cuisineType}</p>
+                <Grid container className={classes.root} >
+                <Grid item xs={12}>
+                    <h1>{recipe.name}</h1>
+                    <h3 className={classes.margin}>{recipe.category}</h3>
+                    <h4 className={classes.margin}>{recipe.cuisineType}</h4>
+                </Grid>
                 <br />
+                <Box className={classes.center}>
                 {imageDisplay}
-                <IngredientList ingredients={ingredients} />
+                </Box>
+                <Grid item xs={12}  className={classes.margin}>
+                    <IngredientList ingredients={ingredients} />
+                </Grid>
+                <Grid item xs={4} className={classes.margin}>
+                    <p>Serving Size: {recipe.servings}</p>
+                </Grid>
+                <Grid item xs={4} className={classes.margin}>
+                    <p>Prep Time: {recipe.prepTime || 'N/A'} </p>
+                </Grid>
+                <Grid item xs={4} className={classes.margin}>
+                    <p>Cook Time: {recipe.cookTime || 'N/A'} </p>
+                </Grid>
 
-            
-
-                <p>Prep Time: {recipe.prepTime || 'N/A'} Cook Time:{recipe.cookTime || 'N/A'} </p>
-                <p>Serving Size: {recipe.servings}</p>
-                <p>Difficulty: {recipe.difficulty}</p>
                 <br />
                 <br />
-                <h3>Directions</h3>
+                <Grid item xs={12}  className={classes.margin}>
+                <h2  className={classes.margin}>Directions</h2>
+                <p><em>Difficulty: {recipe.difficulty}</em></p>
                 <p>{recipe.directions}</p>
-                <Button variant="contained" color="secondary" onClick={handleDelete}>
+                </Grid>
+                <Grid item xs={12} className={classes.margin} >
+                <Button className={classes.mRL} variant="contained" href={`/recipe/edit/${recipe._id}`}>Update</Button>
+                <Button 
+                    className={classes.mRL} 
+                    variant="contained" 
+                    color="secondary" 
+                    onClick={handleDelete}
+                    startIcon={<DeleteIcon />}
+                >
                     DELETE
                 </Button>
-                <Button variant="contained" href={`/recipe/edit/${recipe._id}`}>Update</Button>
+                </Grid>
+                </Grid>
             </div>
         </>
     )
