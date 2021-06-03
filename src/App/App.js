@@ -13,6 +13,14 @@ import RecipeUpdatePage from '../components/pages/RecipeUpdatePage/RecipeUpdateP
 import NavBar from '../components/NavBar/NavBar';
 // import utilities
 import userService from '../utils/userService';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { green } from '@material-ui/core/colors';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: green
+  }
+})
 
 function App() {
   const [user, setUser] = useState(userService.getUser());
@@ -28,6 +36,7 @@ function App() {
 
   return (
     <div className="App">
+      <ThemeProvider theme={theme}>
       <header className="App-header">
         <NavBar
           user={user}
@@ -79,6 +88,7 @@ function App() {
           />
         }/>
       </Switch>
+      </ThemeProvider>
     </div>
   );
 }

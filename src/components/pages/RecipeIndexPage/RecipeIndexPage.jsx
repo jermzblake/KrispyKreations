@@ -146,7 +146,7 @@ function RecipeIndexPage(props) {
                 <br />
 
                 <div className='page-container'>
-                        <Grid container xs={12} className={classes.root} >
+                        <Grid container className={classes.root} >
                             < Grid item xs={4}>
                     <FormControl variant="outlined" className={classes.formControl}>
                         <InputLabel id="filter-select-label">Filter</InputLabel>
