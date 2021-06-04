@@ -115,7 +115,7 @@ export default function RecipeDetailPage({match, history, user}) {
                 <p>{recipe.directions}</p>
                 </Grid>
                 <Grid item xs={12} className={classes.margin} >
-                <Button className={classes.mRL} variant="contained" href={`/recipe/edit/${recipe._id}`}>Update</Button>
+                <Button className={classes.mRL} color="primary" variant="contained" href={`/recipe/edit/${recipe._id}`}>Update</Button>
                 <Button 
                     className={classes.mRL} 
                     variant="contained" 
