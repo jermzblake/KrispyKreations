@@ -11,6 +11,8 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Grid from '@material-ui/core/Grid';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -81,7 +83,6 @@ function RecipeIndexPage(props) {
         let currentRecipeBookEntries = await recipeService.index().then(res => res.recipeEntries);
 
         // check for filters being passed in and filter the recipe book accordingly
-        // replace alerts with toast or modal on final product
         if (filter === "BREAKFAST") {
             let filterRecipes = currentRecipeBookEntries.filter(recipe =>
                 recipe.category === "Breakfast")
@@ -89,7 +90,7 @@ function RecipeIndexPage(props) {
                 if (filterRecipes.length > 0) {
                     return setRecipeBook(filterRecipes)
                 } else {
-                    alert('no Breakfast recipes')
+                    toast.warn('🥞 No Breakfast recipes')
                 }
         }
         else if (filter === "LUNCH") {
@@ -98,7 +99,7 @@ function RecipeIndexPage(props) {
                 if (filterRecipes.length > 0) {
                     return setRecipeBook(filterRecipes)
                 } else {
-                    alert('no Lunch recipes')
+                    toast.warn('🥪 No Lunch recipes')
                 }
         }
         else if (filter === "DINNER") {
@@ -107,7 +108,7 @@ function RecipeIndexPage(props) {
                 if (filterRecipes.length > 0) {
                     return setRecipeBook(filterRecipes)
                 } else {
-                    alert('no Dinner recipes')
+                    toast.warn('🍲 No Dinner recipes')
                 }
         }
         else if (filter === "TREAT") {
@@ -116,7 +117,7 @@ function RecipeIndexPage(props) {
                 if (filterRecipes.length > 0) {
                     return setRecipeBook(filterRecipes)
                 } else {
-                    alert('no Treat recipes')
+                    toast.warn('🧁 No Treat recipes')
                 }
         }
         // no filter just set the whole recipe book
@@ -195,6 +196,7 @@ function RecipeIndexPage(props) {
                         />   
                     ))}
                 </div>
+                <ToastContainer />
             </div>
         )
     }
