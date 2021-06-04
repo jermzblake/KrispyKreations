@@ -4,7 +4,9 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import userService from '../../../utils/userService';
 import { makeStyles } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box'
+import Box from '@material-ui/core/Box';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const useStyles = makeStyles({
     root: {
@@ -34,8 +36,7 @@ function LoginPage (props) {
             props.handleLogin();
             props.history.push('/');
         } catch (err) {
-            // Try and use a modal or toast instead of an alert
-            alert('Invalid Credentials!');
+            toast.error('👎🏾 Invalid Credentials!');
         }
     }
 
@@ -63,6 +64,7 @@ function LoginPage (props) {
                     <Box className={classes.margin}>
                         <Button className={classes.mR} type="submit" variant="contained" color="primary" >Login</Button>
                         <Link to='/'>Cancel</Link>
+                        <ToastContainer />
                     </Box>  
                 </Box> 
             </form>
