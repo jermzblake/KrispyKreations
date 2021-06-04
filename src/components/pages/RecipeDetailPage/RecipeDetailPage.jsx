@@ -38,6 +38,9 @@ const useStyles = makeStyles((theme) =>({
     headerLink: {
         textDecoration: 'none',
         color: '#6B705C'
+    },
+    newRecipe: {
+        color: '#101812'
     }
 }))
 
@@ -81,7 +84,7 @@ export default function RecipeDetailPage({match, history, user}) {
     return (
         <>
             <Link to='/recipebook' className={classes.headerLink}><h1>{user.name}'s Recipe Book</h1></Link>
-            <Link to='/recipeform'>Create New Recipe</Link>
+            <Link className={classes.newRecipe} to='/recipeform'>Create New Recipe</Link>
 
             <div className='page-container'>
                 <Grid container className={classes.root} >

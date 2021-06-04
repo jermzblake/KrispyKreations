@@ -62,6 +62,9 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(1),
       minWidth: 150,
   },
+  newRecipe: {
+      color: '#101812'
+  }
 }));
 
 function RecipeIndexPage(props) {
@@ -142,7 +145,7 @@ function RecipeIndexPage(props) {
         return (
             <div>
                 <h1>{props.user.name}'s Recipe Book</h1>
-                <Link to='/recipeform'>Create New Recipe</Link>
+                <Link className={classes.newRecipe} to='/recipeform'>Create New Recipe</Link>
                 <br />
 
                 <div className='page-container'>
