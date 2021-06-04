@@ -5,6 +5,14 @@
     padding: 20px;
 }
 
+.link-container {
+    text-decoration: none;
+}
+
+.recipe {
+    color: var(--green);
+}
+
 .category {
     color: var(--artichoke);
 }
