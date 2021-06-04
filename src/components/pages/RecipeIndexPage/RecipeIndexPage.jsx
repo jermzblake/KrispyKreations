@@ -201,7 +201,7 @@ function RecipeIndexPage(props) {
     return (
         <>
         <h1>{props.user.name}'s Recipe Book</h1>
-        <Link to='/recipeform'>You have no recipes. Add one!</Link>
+        <Link className={classes.newRecipe} to='/recipeform'>You have no recipes. Add one!</Link>
         </>
     )
 
