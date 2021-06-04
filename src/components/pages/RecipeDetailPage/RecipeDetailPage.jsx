@@ -119,7 +119,7 @@ export default function RecipeDetailPage({match, history, user}) {
                 <Button 
                     className={classes.mRL} 
                     variant="contained" 
-                    color="secondary" 
+                    color="default" 
                     onClick={handleClickOpen}
                     startIcon={<DeleteIcon />}
                 >
