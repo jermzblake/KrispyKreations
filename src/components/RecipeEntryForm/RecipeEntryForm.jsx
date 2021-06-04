@@ -9,6 +9,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import OutlinedInput from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import recipeService from '../../utils/recipeService';
+import Grid from '@material-ui/core/Grid';
 
 const difficulties = [
     {
@@ -47,10 +48,20 @@ const categories = [
 const useStyles = makeStyles((theme) => ({
     root: {
       '& .MuiTextField-root': {
-        margin: theme.spacing(1),
+        margin: theme.spacing(4),
         width: '25ch',
       },
     },
+    center: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        margin: '0 auto',
+        width: '50%'
+    },
+    buttonMargin: {
+        margin: '20px 20px'
+    }
   }));
 
 function RecipeEntryForm (props) {
@@ -153,30 +164,40 @@ function RecipeEntryForm (props) {
                     onChange={e => setDirections(e.target.value)}
                 />
                 <br /><br />
+                <Grid container className={classes.center}>
+                    <Grid item xs={6}>
                 <FormControl>
                     <InputLabel htmlFor="prep-time">Prep Time</InputLabel>
                     <OutlinedInput id="prep-time" type="number" onChange={e => setPrepTime(e.target.value)} aria-describedby="prep-helper-text" />
                     <FormHelperText id="prep-helper-text">Enter prep time in minutes</FormHelperText>
                 </FormControl>
+                    </Grid>
+                    <Grid item xs={6}>
                 <FormControl>
                     <InputLabel htmlFor="cook-time">Cook Time</InputLabel>
                     <OutlinedInput id="cook-time" type="number" onChange={e => setCookTime(e.target.value)} aria-describedby="cook-helper-text" />
                     <FormHelperText id="cook-helper-text">Enter cook time in minutes</FormHelperText>
                 </FormControl>
+                    </Grid>
+                    <Grid item xs={6}>
                 <FormControl>
                     <InputLabel htmlFor="serving-size">Serving Size</InputLabel>
                     <OutlinedInput id="serving-size" type="number" onChange={e => setServings(e.target.value)} aria-describedby="serving-helper-text" />
                     <FormHelperText id="serving-helper-text">Enter serving size</FormHelperText>
                 </FormControl>
+                    </Grid>
                 <br />
+                <Grid item xs={6}>
                 <FormControl>
                     <InputLabel htmlFor="image-url">Image</InputLabel>
                     <OutlinedInput id="image-url" type="text" onChange={e => setImage(e.target.value)} aria-describedby="image-helper-text" />
                     <FormHelperText id="image-helper-text">Enter URL of image location</FormHelperText>
                 </FormControl>
+                </Grid>
+                </Grid>
                 <div>
-                    <Button type="submit" variant="contained" color="primary" disabled={isFormInvalid()}>Submit</Button>
-                    <Link to='/recipebook'>Cancel</Link>
+                    <Button className={classes.buttonMargin} type="submit" variant="contained" color="primary" disabled={isFormInvalid()}>Submit</Button>
+                    <Link className={classes.buttonMargin} to='/recipebook'>Cancel</Link>
                 </div>  
             </form>
         </div>
