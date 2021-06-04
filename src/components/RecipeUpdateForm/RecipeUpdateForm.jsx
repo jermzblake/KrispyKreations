@@ -9,6 +9,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import OutlinedInput from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import recipeService from '../../utils/recipeService';
+import Grid from '@material-ui/core/Grid';
 
 const difficulties = [
     {
@@ -47,10 +48,20 @@ const categories = [
 const useStyles = makeStyles((theme) => ({
     root: {
       '& .MuiTextField-root': {
-        margin: theme.spacing(1),
+        margin: theme.spacing(4),
         width: '25ch',
       },
     },
+    center: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        margin: '0 auto',
+        width: '50%'
+    },
+    buttonMargin: {
+        margin: '20px 20px'
+    }
 }));
 
 export default function RecipeUpdateForm({match, history, updateMessage}) {
@@ -184,50 +195,60 @@ export default function RecipeUpdateForm({match, history, updateMessage}) {
                     value={directions}
                 />
                 <br /><br />
-                <FormControl>
-                    <InputLabel htmlFor="prep-time" shrink>Prep Time</InputLabel>
-                    <OutlinedInput
-                     id="prep-time" 
-                     type="number" 
-                     onChange={e => setPrepTime(e.target.value)} 
-                     value={prepTime || ''} 
-                     aria-describedby="prep-helper-text" />
-                    <FormHelperText id="prep-helper-text">Enter prep time in minutes</FormHelperText>
-                </FormControl>
-                <FormControl>
-                    <InputLabel htmlFor="cook-time" shrink>Cook Time</InputLabel>
-                    <OutlinedInput
-                     id="cook-time" 
-                     type="number" 
-                     onChange={e => setCookTime(e.target.value)} 
-                     value={cookTime || ''} 
-                     aria-describedby="cook-helper-text" />
-                    <FormHelperText id="cook-helper-text">Enter cook time in minutes</FormHelperText>
-                </FormControl>
-                <FormControl>
-                    <InputLabel htmlFor="serving-size" shrink>Serving Size</InputLabel>
-                    <OutlinedInput
-                     id="serving-size" 
-                     type="number" 
-                     onChange={e => setServings(e.target.value)} 
-                     value={servings || ''} 
-                     aria-describedby="serving-helper-text" />
-                    <FormHelperText id="serving-helper-text">Enter serving size</FormHelperText>
-                </FormControl>
+                <Grid container className={classes.center}>
+                    <Grid item xs={6}>
+                        <FormControl>
+                            <InputLabel htmlFor="prep-time" shrink>Prep Time</InputLabel>
+                            <OutlinedInput
+                            id="prep-time" 
+                            type="number" 
+                            onChange={e => setPrepTime(e.target.value)} 
+                            value={prepTime || ''} 
+                            aria-describedby="prep-helper-text" />
+                            <FormHelperText id="prep-helper-text">Enter prep time in minutes</FormHelperText>
+                        </FormControl>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <FormControl>
+                            <InputLabel htmlFor="cook-time" shrink>Cook Time</InputLabel>
+                            <OutlinedInput
+                            id="cook-time" 
+                            type="number" 
+                            onChange={e => setCookTime(e.target.value)} 
+                            value={cookTime || ''} 
+                            aria-describedby="cook-helper-text" />
+                            <FormHelperText id="cook-helper-text">Enter cook time in minutes</FormHelperText>
+                        </FormControl>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <FormControl>
+                            <InputLabel htmlFor="serving-size" shrink>Serving Size</InputLabel>
+                            <OutlinedInput
+                            id="serving-size" 
+                            type="number" 
+                            onChange={e => setServings(e.target.value)} 
+                            value={servings || ''} 
+                            aria-describedby="serving-helper-text" />
+                            <FormHelperText id="serving-helper-text">Enter serving size</FormHelperText>
+                        </FormControl>
+                    </Grid>
                 <br />
-                <FormControl>
-                    <InputLabel htmlFor="image-url" shrin>Image</InputLabel>
-                    <OutlinedInput 
-                     id="image-url"
-                     type="text" 
-                     onChange={e => setImage(e.target.value)} 
-                     value={image || ''}
-                     aria-describedby="image-helper-text" />
-                    <FormHelperText id="image-helper-text">Enter URL of image location</FormHelperText>
-                </FormControl>
+                    <Grid item xs={6}>
+                        <FormControl>
+                            <InputLabel htmlFor="image-url" shrin>Image</InputLabel>
+                            <OutlinedInput 
+                            id="image-url"
+                            type="text" 
+                            onChange={e => setImage(e.target.value)} 
+                            value={image || ''}
+                            aria-describedby="image-helper-text" />
+                            <FormHelperText id="image-helper-text">Enter URL of image location</FormHelperText>
+                        </FormControl>
+                    </Grid>
+                </Grid>
                 <div>
-                    <Button type="submit" variant="contained" color="primary" disabled={isFormInvalid()}>Submit</Button>
-                    <Link to={`/recipebook/${entryId}`}>Cancel</Link>
+                    <Button className={classes.buttonMargin} type="submit" variant="contained" color="primary" disabled={isFormInvalid()}>Submit</Button>
+                    <Link className={classes.buttonMargin} to={`/recipebook/${entryId}`}>Cancel</Link>
                 </div>  
             </form>
         </>
